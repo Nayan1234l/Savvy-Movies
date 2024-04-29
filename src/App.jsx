@@ -1,12 +1,11 @@
-import { useState } from 'react'
 import './App.css'
 
 function App() {
 
   return (
     <>
-      <h1 className='justify-center items-center p-16'>Welcome to Savvy Movies</h1>
-      <p>It's platform where you can find all the popular and latest movies latest movies  </p>
+      <h1 className='text-center py-16'>Welcome to Savvy Movies</h1>
+      <p className='text-center'>It's a platform where you can find all the popular and latest movies.</p>
     </>
   )
 }
