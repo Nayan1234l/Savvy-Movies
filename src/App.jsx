@@ -8,6 +8,7 @@ function App() {
       <p className='text-center'>It's a platform where you can find all the popular and latest movies.</p>
     </>
   )
+
 }
 
 export default App
