@@ -2,14 +2,13 @@
 
 import React, { useState } from 'react';
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ onRegister }) => {
     const [email, setEmail] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // onRegister(email);
+        onRegister(email);
         setEmail('');
-
     };
 
     return (
