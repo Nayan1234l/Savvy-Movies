@@ -8,7 +8,7 @@ body {
 	flex-wrap: nowrap;
 }
 
-/* .image-container {
+.image-container {
 	position: relative;
 	transition: transform 0.2s;
 }
@@ -32,4 +32,18 @@ body {
 	font-size: 20px;
 	padding: 20px;
 	text-align: center;
-} */
+}
+/* App.css or your custom CSS file */
+.movie-card {
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+/* App.css or your custom CSS file */
+.movie-poster {
+    width: 200px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
