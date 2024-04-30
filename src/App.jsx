@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MovieHeading from "./components/MovieHeading";
 import SearchMovie from "./components/SearchMovie";
-import AddFavourites from "./components/AddFavourites"; // Import AddFavourites component
+import AddFavourites from "./components/AddFavourites";
+import RemoveFavourites from "./components/RemoveFavourites";
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -25,10 +26,24 @@ const App = () => {
     callApi(searchMovie)
   }, [searchMovie])
 
+  useEffect(() => {
+    const GetFavouritesLocalStorage = JSON.parse(localStorage.getItem('favourite-movies'))
+    setAddFavourite(GetFavouritesLocalStorage)
+  }, [])
 
+  const saveFavouriteLocalStorage = (items) => {
+    localStorage.setItem('favourite-movies', JSON.stringify(items))
+  }
   const addToFavourite = (movie) => {
     const userFavouriteList = [...addFavourite, movie]
     setAddFavourite(userFavouriteList)
+    saveFavouriteLocalStorage(userFavouriteList)
+  }
+
+  const removeFavouriteMovie = (movie) => {
+    const newFavouriteMovieList = addFavourite.filter((favourite) => favourite.imdbID !== movie.imdbID)
+    setAddFavourite(newFavouriteMovieList)
+    saveFavouriteLocalStorage(newFavouriteMovieList)
   }
 
   return (
@@ -37,14 +52,21 @@ const App = () => {
         <MovieHeading heading="Movies" />
         <SearchMovie searchMovie={searchMovie} setSearchMovie={setSearchMovie} />
       </div>
-      <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieList movies={movies} favouritesMovies={AddFavourites} handleFavouriteMovies={addToFavourite} />
+      <div className='row '>
+        <MovieList
+          movies={movies}
+          favouritesMovies={AddFavourites}
+          handleFavouriteMovies={addToFavourite}
+        />
       </div>
       <div className="row d-flex align-items-center mt-4 mb-4">
         <MovieHeading heading="Favourites" />
       </div>
-      <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieList movies={addFavourite} favouritesMovies={AddFavourites} handleFavouriteMovies={addToFavourite} />
+      <div className='row '>
+        <MovieList movies={addFavourite}
+          favouritesMovies={RemoveFavourites}
+          handleFavouriteMovies={removeFavouriteMovie}
+        />
       </div>
     </div>
   )
