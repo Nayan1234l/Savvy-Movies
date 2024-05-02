@@ -1,14 +1,15 @@
-
-
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom'; 
 
 const RegistrationForm = ({ onRegister }) => {
     const [email, setEmail] = useState('');
+    const history = useHistory(); 
 
     const handleSubmit = (e) => {
         e.preventDefault();
         onRegister(email);
         setEmail('');
+        history.push('/');
     };
 
     return (
